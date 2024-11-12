@@ -1,0 +1,33 @@
+# graph/schema.graphqls
+
+"""
+Represents a user in the system.
+"""
+type User @key(fields: "discordID") {
+  discordID: String! # Unique identifier for the user in Discord
+  name: String! # Discord display name of the user
+  tagNumber: Int # Optional: Can be set later if needed
+  role: String! # Role can be set to a standard value for now
+}
+
+"""
+Queries available in the User Service.
+"""
+type Query {
+  getUser(discordID: String!): User
+}
+
+"""
+Mutations available in the User Service.
+"""
+type Mutation {
+  createUser(input: UserInput!): User!
+}
+
+"""
+Input type for creating a new user.
+"""
+input UserInput {
+  name: String!
+  discordID: String!
+}
